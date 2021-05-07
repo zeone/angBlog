@@ -1,1 +1,32 @@
-<p>create-page works!</p>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Bew Post</h1>
+
+  <div class="form-control" [ngClass]="{ invalid: isInvalid('title') }">
+    <label for="title">Title:</label>
+    <input id="title" type="text" formControlName="title" />
+    <div *ngIf="isInvalid('title')" class="validation">
+      <small *ngIf="form.get('title')?.errors?.required"> Enter Title </small>
+    </div>
+  </div>
+
+  <div class="form-control" [ngClass]="{ invalid: isInvalid('author') }">
+    <label for="author">Author:</label>
+    <input id="title" type="text" formControlName="author" />
+    <div *ngIf="isInvalid('author')" class="validation">
+      <small *ngIf="form.get('author')?.errors?.required"> Enter Author </small>
+    </div>
+  </div>
+
+  <div class="form-control">
+    <label>Content:</label>
+    <quill-editor formControlName="content"></quill-editor>
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-block btn-dark"
+    [disabled]="form.invalid"
+  >
+    Create
+  </button>
+</form>

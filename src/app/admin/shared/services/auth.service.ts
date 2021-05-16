@@ -7,7 +7,7 @@ export interface ErrorResponce {
   code: number;
 }
 
-@Injectable()
+@Injectable({providedIn:'root'})
 export class AuthService {
   constructor() {}
 

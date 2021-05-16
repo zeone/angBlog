@@ -19,14 +19,14 @@ export class PostsService {
       author: 'Ihor',
       date: new Date(),
       text: 'Some text 2',
-      id: '1',
+      id: '2',
     },
     {
       title: 'Test 3',
       author: 'Ihor',
       date: new Date(),
       text: 'Some text 4',
-      id: '1',
+      id: '3',
     },
   ];
   constructor() {}
@@ -38,6 +38,11 @@ export class PostsService {
   }
 
   addPost(post: Post) {
+    post.id = (this.posts.length + 1).toString();
     this.posts.push(post);
+  }
+
+  delete(id: string) {
+    this.posts = this.posts.filter((p) => p.id !== id);
   }
 }

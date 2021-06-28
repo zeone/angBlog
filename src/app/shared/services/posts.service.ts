@@ -37,6 +37,12 @@ export class PostsService {
     });
   }
 
+  getPostById(id: string): Observable<Post> {
+    return new Observable<Post>((obs) => {
+      obs.next(this.posts.find((e) => e.id === id));
+    });
+  }
+
   addPost(post: Post) {
     post.id = (this.posts.length + 1).toString();
     this.posts.push(post);
@@ -44,5 +50,10 @@ export class PostsService {
 
   delete(id: string) {
     this.posts = this.posts.filter((p) => p.id !== id);
+  }
+
+  updatePost(post: Post) {
+    let index = this.posts.findIndex((e) => e.id == post.id);
+    this.posts[index] = post;
   }
 }

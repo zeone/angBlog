@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Post } from '../shared/interfaces';
 import { PostsService } from '../shared/services/posts.service';
 
@@ -8,10 +9,10 @@ import { PostsService } from '../shared/services/posts.service';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-  posts!: Post[];
+  posts$!: Observable<Post[]>
   constructor(private postsService: PostsService) {}
 
   ngOnInit() {
-    this.postsService.getPosts().subscribe((posts) => (this.posts = posts));
+    this.posts$ =  this.postsService.getPosts();
   }
 }
